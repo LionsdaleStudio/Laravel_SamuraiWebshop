@@ -48,8 +48,6 @@ class SwordController extends Controller
         $sword->exclusive = 0;
         $sword->release = $request->released_at;
         $sword->save(); */
-       
-
     }
 
     /**

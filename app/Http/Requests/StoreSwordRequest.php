@@ -21,8 +21,21 @@ class StoreSwordRequest extends FormRequest
      */
     public function rules(): array
     {
+        //Ha itt valami nem felel meg, vissza küld arra az oldalra ahonnan a kérés érkezett
         return [
-            //
+            "name" => ["required", "string", "max:10"],
+            "price" => ["required", "integer"],
+            "length" => ["required", "numeric", "decimal:1,2"],
+            "description" => ["required", "string"],
+            "release" => ["required", "date"],
+            "exclusive" => ["boolean"]
+        ];
+    }
+    //A név mező required validációjának üzenetét felül lehet írni
+    public function messages() {
+        return [
+            "name.required" => "A név mező kitöltése kötelező.",
+            "price.integer" => "Az ár csak egész, valós szám lehet."
         ];
     }
 }

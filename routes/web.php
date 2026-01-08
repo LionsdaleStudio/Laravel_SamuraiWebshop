@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name("welcome");
 
 // Kontroller direkt meghívás
 /* Route::get('/swords', [SwordController::class, "index"])->name("swords.index"); */
