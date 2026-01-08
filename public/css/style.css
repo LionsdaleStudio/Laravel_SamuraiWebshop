@@ -1,0 +1,47 @@
+h1 {
+    color: blue;
+}
+
+a {
+    border: 1px solid black;
+    border-radius: 5px;
+    text-decoration: none;
+    padding: 5px;
+    margin: 5px;
+    cursor: pointer;
+    background-color: #04373a;
+    color: #e5dfa3;
+}
+
+a:hover {
+    background-color: #378673;
+}
+
+.content {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+
+table {
+    width: 75%;
+    border-collapse: collapse;
+}
+
+td,
+th {
+    padding: 5px;
+    border: 1px solid black;
+}
+
+tr:hover {
+    background-color: #378673;
+}
+
+th {
+    padding-top: 6px;
+    padding-bottom: 6px;
+    text-align: left;
+    background-color: #b42d1c;
+    color: #c09554;
+}

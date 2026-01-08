@@ -13,7 +13,9 @@ class SwordController extends Controller
      */
     public function index()
     {
-        //
+        $swords = Sword::all();
+        //dd($kardok);  Debug módszer, return function.
+        return view("swords.index", ["swords" => $swords]);
     }
 
     /**

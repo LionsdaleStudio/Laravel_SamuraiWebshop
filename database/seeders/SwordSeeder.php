@@ -55,6 +55,11 @@ class SwordSeeder extends Seeder
         //Véletlenszerű
         Sword::factory(10)->create();
 
+        //Véletlenszerű félig kitöltött adatokkal
+        Sword::factory()->create([
+            "name" => "Gunblade"
+        ]);
+
         //Objektum létrehozása modell alapján adatbázis nélkül
         $basicSword = new Sword();
         $basicSword->name = "Basic Kard";
