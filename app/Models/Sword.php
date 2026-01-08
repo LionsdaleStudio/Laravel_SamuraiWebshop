@@ -9,4 +9,13 @@ class Sword extends Model
 {
     /** @use HasFactory<\Database\Factories\SwordFactory> */
     use HasFactory;
+
+    protected $fillable = [
+        "name",
+        "length",
+        "price",
+        "description",
+        "release",
+        "exclusive",
+    ];
 }

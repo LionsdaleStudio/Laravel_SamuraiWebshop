@@ -7,4 +7,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/swords', [SwordController::class, "index"])->name("swords.index");
+// Kontroller direkt meghívás
+/* Route::get('/swords', [SwordController::class, "index"])->name("swords.index"); */
+
+//RESOURCE útvonalak
+Route::resource('/swords', SwordController::class);
+

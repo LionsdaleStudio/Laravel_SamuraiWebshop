@@ -11,14 +11,17 @@
 
 <body>
     {{-- Navbar (it's not but close enough) --}}
-    <h1>@yield("pageTitle")</h1>
-    <a href="{{ route("swords.index") }}">List all swords</a>
+    <h1>@yield('pageTitle')</h1>
+    <a href="{{ route('swords.index') }}">List all swords</a>
     <hr>
     {{-- End Navbar --}}
 
     {{-- Main Content --}}
-    @yield('content')
+    <div class="container">
+        @yield('content')
+    </div>
     {{-- End Main Content --}}
 
 </body>
+
 </html>

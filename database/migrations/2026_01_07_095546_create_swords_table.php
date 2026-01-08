@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string("name"); 
             $table->double("length");
             $table->integer("price");
-            $table->boolean("exclusive");
+            $table->boolean("exclusive")->default(false);
             $table->text("description");
             $table->string("image")->default("placeholder.png");
             $table->date("release");

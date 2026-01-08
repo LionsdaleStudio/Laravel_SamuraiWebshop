@@ -17,10 +17,12 @@ a:hover {
     background-color: #378673;
 }
 
-.content {
+.container {
     display: flex;
+    flex-direction: column;
     width: 100%;
     justify-content: center;
+    align-items: center;
 }
 
 table {
@@ -44,4 +46,18 @@ th {
     text-align: left;
     background-color: #b42d1c;
     color: #c09554;
+}
+
+.form-group, .form-group-check {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.form-group label {
+    display: block;
+}
+
+.form-group input {
+    display: block;
+    width: 100%;
 }

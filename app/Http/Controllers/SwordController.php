@@ -23,7 +23,7 @@ class SwordController extends Controller
      */
     public function create()
     {
-        //
+        return view("swords.create");
     }
 
     /**
@@ -31,7 +31,25 @@ class SwordController extends Controller
      */
     public function store(StoreSwordRequest $request)
     {
-        //
+        //Egy soros megoldás, a bool típusú változót nem kell kezelni, ha nem jön át a  checkboxxal, mert az adatbázisban az alapértelmezett érték a False
+        //Ha be van pipálva a checkbox az alap value=1 érték miatt, 1 lesz az értéke, ami jó az adatbázisba
+        
+        $sword = Sword::create($request->all());
+        
+        //Átirányítás egy adott oldalra
+        return redirect()->route("swords.index")->with("msg", "Sword was created successfully");
+
+        //Ha vissza akarsz menni arra az oldalra ahonnan jöttél
+        //return back()->with("msg", "Sword was created successfully");
+
+
+        //Te hozod kézzel létre a 
+        /* $sword = new Sword($request->all());
+        $sword->exclusive = 0;
+        $sword->release = $request->released_at;
+        $sword->save(); */
+       
+
     }
 
     /**
