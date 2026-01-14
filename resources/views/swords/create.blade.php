@@ -41,7 +41,7 @@
                 <input type="checkbox" name="exclusive" id="exclusive" value="1">
             </div>
             <div>
-                <button type="submit">Add sword</button>
+                <button type="submit" class="buttonlikea">Add sword</button>
             </div>
         </form>
         <hr>

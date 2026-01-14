@@ -42,7 +42,7 @@
                 <input type="checkbox" name="exclusive" id="exclusive" value="1" {{ $sword->exclusive ? "checked" : "" }}>
             </div>
             <div>
-                <button type="submit">Update {{$sword->name}}</button>
+                <button type="submit" class="buttonlikea">Update {{$sword->name}}</button>
             </div>
         </form>
         <hr>
