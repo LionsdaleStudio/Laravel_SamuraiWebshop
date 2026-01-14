@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -45,4 +46,10 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    /* Kapcsolatok */
+    public function samurais() {
+        return $this->BelongsToMany(Samurai::class);
+    }
+    //PIVOT táblában keresi az összes user_id (ami a saját ID-je) és a mellé tartozó összes samurai_id-t, ami alapján lekéri a Samurai modellt. 
 }

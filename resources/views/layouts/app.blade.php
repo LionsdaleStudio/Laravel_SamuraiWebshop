@@ -15,6 +15,9 @@
     <a href="{{ route('welcome') }}">Home</a>
     <a href="{{ route('swords.index') }}">List all swords</a>
     <a href="{{ route('swords.create') }}">Add new sword</a>
+    <a href="{{ route('swords.trashed') }}">Restore deleted swords</a>
+    <a href="{{ route('samurais.index') }}">List all the users of given samurai (many to many relation)</a>
+
     <hr>
     {{-- End Navbar --}}
 

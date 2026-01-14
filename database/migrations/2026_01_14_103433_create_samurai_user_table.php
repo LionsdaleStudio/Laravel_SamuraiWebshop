@@ -11,15 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('samurais', function (Blueprint $table) {
-            $table->id();
-            $table->string("name");
-            $table->date("birthdate");
-            $table->double("height");
-            $table->integer("ageOfDeath");
-            $table->string("image")->default("sam_placeholder.png");
+        Schema::create('samurai_user', function (Blueprint $table) {
+            $table->foreignId("samurai_id")->constrained()->onDelete('cascade');
+            $table->foreignId("user_id")->constrained()->onDelete('cascade');
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 
@@ -28,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('samurais');
+        Schema::dropIfExists('samurai_user');
     }
 };

@@ -23,7 +23,7 @@ class StoreSwordRequest extends FormRequest
     {
         //Ha itt valami nem felel meg, vissza küld arra az oldalra ahonnan a kérés érkezett
         return [
-            "name" => ["required", "string", "max:10"],
+            "name" => ["required", "string", "max:100", "unique:swords,name"],
             "price" => ["required", "integer"],
             "length" => ["required", "numeric", "decimal:1,2"],
             "description" => ["required", "string"],

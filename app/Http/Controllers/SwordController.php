@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Sword;
 use App\Http\Requests\StoreSwordRequest;
 use App\Http\Requests\UpdateSwordRequest;
+use Illuminate\Http\Request;
 
 class SwordController extends Controller
 {
@@ -13,7 +14,9 @@ class SwordController extends Controller
      */
     public function index()
     {
-        $swords = Sword::all();
+        $swords = Sword::all(); //all() funkció az ELOQUENT ORM funkciója
+        //Eloquent ORM nélkül $swords = DB::table("swords")->get();
+
         //dd($kardok);  Debug módszer, return function.
         return view("swords.index", ["swords" => $swords]);
     }
@@ -55,7 +58,7 @@ class SwordController extends Controller
      */
     public function show(Sword $sword)
     {
-        //
+        return view("swords.show", ["sword" => $sword]);
     }
 
     /**
@@ -63,7 +66,7 @@ class SwordController extends Controller
      */
     public function edit(Sword $sword)
     {
-        //
+        return view("swords.edit", ["sword" => $sword]);
     }
 
     /**
@@ -71,7 +74,8 @@ class SwordController extends Controller
      */
     public function update(UpdateSwordRequest $request, Sword $sword)
     {
-        //
+        $sword->update($request->all());
+        return redirect()->route("swords.index")->with("msg", "{$sword->name} was updated successfully");
     }
 
     /**
@@ -79,6 +83,20 @@ class SwordController extends Controller
      */
     public function destroy(Sword $sword)
     {
-        //
+        $sword->delete();
+        return redirect()->route("swords.index")->with("msg", "{$sword->name} was deleted successfully");
+    }
+
+    /* Resource funkciók vége */
+
+    /* Saját funkcionalitások */
+    public function showTrashed() {
+        $trashedSwords = Sword::onlyTrashed()->get(); //Csak a törölt kardok lekérése
+        return view("swords.index", ["swords" => $trashedSwords]);
+    }
+
+    public function restore (Sword $sword) {
+        $sword->restore();
+        return redirect()->route('swords.index')->with('msg', "{$sword->name} was restored successfully");
     }
 }

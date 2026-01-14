@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateSwordRequest extends FormRequest
@@ -11,7 +12,7 @@ class UpdateSwordRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true; //Mindenki frissíthet most kardot
     }
 
     /**
@@ -21,8 +22,15 @@ class UpdateSwordRequest extends FormRequest
      */
     public function rules(): array
     {
+
         return [
-            //
+            "name" => ["required", "string", "max:100", "unique:swords,name,". $this->sword->id],
+            //"name" => ["required", "string", "max:100", Rule::unique("swords", "name")->ignore($this->sword->id)],
+            "price" => ["required", "integer"],
+            "length" => ["required", "numeric", "decimal:1,2"],
+            "description" => ["required", "string"],
+            "release" => ["required", "date"],
+            "exclusive" => ["boolean"]
         ];
     }
 }

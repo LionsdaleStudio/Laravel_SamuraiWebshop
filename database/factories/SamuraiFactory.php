@@ -17,7 +17,10 @@ class SamuraiFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'name' => fake()->name(),
+            'birthdate' => fake()->dateTimeBetween('-900 years', '-200 years')->format("Y-m-d"),
+            'height' => fake()->randomFloat(2, 1.5, 2.0), // meters
+            'ageOfDeath' => fake()->numberBetween(18, 110),
         ];
     }
 }

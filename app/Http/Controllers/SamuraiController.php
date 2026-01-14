@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Samurai;
 use App\Http\Requests\StoreSamuraiRequest;
 use App\Http\Requests\UpdateSamuraiRequest;
+use App\Models\User;
 
 class SamuraiController extends Controller
 {
@@ -13,7 +14,11 @@ class SamuraiController extends Controller
      */
     public function index()
     {
-        //
+        $samurai = Samurai::find(1); //1 id-jű szamuráj lekérése és userei kiiratása pivot alapján
+        dd($samurai->users);
+
+        /*  $user = User::find(2);  //2 id-jű user lekérése és kedvenc szamurájainak kiiratása pivot alapján
+         dd($user->samurais); */
     }
 
     /**

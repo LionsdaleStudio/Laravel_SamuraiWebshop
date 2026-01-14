@@ -32,8 +32,10 @@ table {
 
 td,
 th {
+    width: 200px;
     padding: 5px;
     border: 1px solid black;
+    text-align: center;
 }
 
 tr:hover {
@@ -48,7 +50,8 @@ th {
     color: #c09554;
 }
 
-.form-group, .form-group-check {
+.form-group,
+.form-group-check {
     width: 100%;
     margin-bottom: 10px;
 }
@@ -64,4 +67,40 @@ th {
 
 .invalid {
     background-color: #b42d1c;
+}
+
+.buttonlikea {
+    border: 1px solid black;
+    border-radius: 5px;
+    text-decoration: none;
+    padding: 5px;
+    margin: 5px;
+    cursor: pointer;
+    background-color: #04373a;
+    color: #e5dfa3;
+    min-height: 30.8px;
+}
+
+.buttonlikea:hover {
+    background-color: #378673;
+}
+
+.actions {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+}
+
+.details {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.details img {
+    width: 25%;
+    height: 25%;
+    margin-bottom: 10px;
 }

@@ -4,11 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Sword extends Model
 {
     /** @use HasFactory<\Database\Factories\SwordFactory> */
     use HasFactory;
+    use SoftDeletes;
 
     protected $fillable = [
         "name",
@@ -18,4 +20,9 @@ class Sword extends Model
         "release",
         "exclusive",
     ];
+
+    /* RELATIONS */
+    public function samurai() { //Keresi a samurai.id-t a Samurai táblában. ami ugyanaz mint a swords.samurai_id
+        return $this->belongsTo(Samurai::class);
+    }
 }
