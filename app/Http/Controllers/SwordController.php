@@ -26,6 +26,9 @@ class SwordController extends Controller
      */
     public function create()
     {
+        if (auth()->user()->cannot('create', Sword::class)) {
+            abort(403);
+        }
         return view("swords.create");
     }
 
@@ -36,9 +39,9 @@ class SwordController extends Controller
     {
         //Egy soros megoldás, a bool típusú változót nem kell kezelni, ha nem jön át a  checkboxxal, mert az adatbázisban az alapértelmezett érték a False
         //Ha be van pipálva a checkbox az alap value=1 érték miatt, 1 lesz az értéke, ami jó az adatbázisba
-        
+
         $sword = Sword::create($request->all());
-        
+
         //Átirányítás egy adott oldalra
         return redirect()->route("swords.index")->with("msg", "Sword was created successfully");
 
@@ -90,12 +93,14 @@ class SwordController extends Controller
     /* Resource funkciók vége */
 
     /* Saját funkcionalitások */
-    public function showTrashed() {
+    public function showTrashed()
+    {
         $trashedSwords = Sword::onlyTrashed()->get(); //Csak a törölt kardok lekérése
         return view("swords.index", ["swords" => $trashedSwords]);
     }
 
-    public function restore (Sword $sword) {
+    public function restore(Sword $sword)
+    {
         $sword->restore();
         return redirect()->route('swords.index')->with('msg', "{$sword->name} was restored successfully");
     }

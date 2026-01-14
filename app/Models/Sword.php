@@ -2,10 +2,13 @@
 
 namespace App\Models;
 
+use App\Policies\SwordPolicy;
+use Illuminate\Database\Eloquent\Attributes\UsePolicy;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+#[UsePolicy(SwordPolicy::class)] //nem kötelező, manuális regisztráció, a laravel magától felismeri az aktív policyket ha jók az elnevezések
 class Sword extends Model
 {
     /** @use HasFactory<\Database\Factories\SwordFactory> */

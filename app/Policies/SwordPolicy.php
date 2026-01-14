@@ -29,7 +29,12 @@ class SwordPolicy
      */
     public function create(User $user): bool
     {
-        return false;
+        if ($user->id == 1) {
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 
     /**

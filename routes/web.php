@@ -19,3 +19,7 @@ Route::resource('/swords', SwordController::class);
 
 Route::resource('/samurais', SamuraiController::class);
 
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

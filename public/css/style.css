@@ -4,6 +4,7 @@ body {
     margin: 0;
     padding: 0;
     height: 100%;
+    color:#e5dfa3;
 }
 
 /* Background video container */
@@ -65,17 +66,18 @@ a:hover {
 }
 
 .container {
-    display: flex;
+ /*    display: flex;
     flex-direction: column;
     width: 100%;
     justify-content: center;
-    align-items: center;
+    align-items: center; */
 }
 
 table {
     width: 75%;
     border-collapse: collapse;
     background-color: #e5dfa3;
+    color: #04373a;
 }
 
 td,
@@ -102,6 +104,7 @@ th {
     background-color: #e5dfa3;
     padding: 2rem;
     margin-top: 1rem;
+    color: #04373a;
 }
 
 .form-group,
@@ -157,4 +160,10 @@ th {
     width: 25%;
     height: 25%;
     margin-bottom: 10px;
+}
+
+.auth_routes {
+    display: flex;
+    flex-direction: row;
+    display: inline-flex;
 }

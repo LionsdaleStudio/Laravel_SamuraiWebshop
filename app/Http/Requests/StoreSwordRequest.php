@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Sword;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreSwordRequest extends FormRequest
@@ -11,7 +12,7 @@ class StoreSwordRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return true;
+        return auth()->user()->can('create', Sword::class);
     }
 
     /**
