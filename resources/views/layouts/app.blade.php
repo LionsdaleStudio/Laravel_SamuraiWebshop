@@ -16,7 +16,7 @@
     {{-- Videó background --}}
     <div class="video-bg">
         <video autoplay muted loop playsinline>
-            <source src="{{ asset('vids/japan.mp4') }}" type="video/mp4">
+            <source src="{{ asset('storage/vids/japan.mp4') }}" type="video/mp4">
         </video>
     </div>
     

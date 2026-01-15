@@ -6,6 +6,8 @@ use App\Models\Sword;
 use App\Http\Requests\StoreSwordRequest;
 use App\Http\Requests\UpdateSwordRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
 
 class SwordController extends Controller
 {
@@ -30,8 +32,7 @@ class SwordController extends Controller
             if (auth()->user()->cannot('create', Sword::class)) {
                 abort(403);
             }
-        }
-        else {
+        } else {
             abort(403);
         }
 
@@ -43,10 +44,30 @@ class SwordController extends Controller
      */
     public function store(StoreSwordRequest $request)
     {
+
+        $filename = "placeholder.png";
+        //A kéréssel, megérkezett-e a feltölteni kívánt fájl:
+        if ($request->hasFile("image") == true) {
+            //Fájl lekérése változóba    
+            $file = $request->file("image");
+            //Egyedi név generálása - egyediazonosito.eredeti-kiterjesztés
+            $filename = Str::uuid() . '.' . $file->extension();
+            //Feltöltés
+            $path = $file->storeAs('images/swords', $filename, 'public');
+            //Ellenőrzés
+            if (Storage::disk('public')->exists($path) == false) {
+                return back()->withErrors(['image' => 'File could not be saved.']);
+            }
+        }
+
+        //Mivel a kép nevét felül kell írni, ezért új objektumot csinálok, módosítom és mentem
+        $sword = new Sword($request->all());
+        $sword->image = $filename;
+        $sword->save();
+
         //Egy soros megoldás, a bool típusú változót nem kell kezelni, ha nem jön át a  checkboxxal, mert az adatbázisban az alapértelmezett érték a False
         //Ha be van pipálva a checkbox az alap value=1 érték miatt, 1 lesz az értéke, ami jó az adatbázisba
-
-        $sword = Sword::create($request->all());
+        // Sword::create($request->all());
 
         //Átirányítás egy adott oldalra
         return redirect()->route("swords.index")->with("msg", "{$sword->name} was created successfully");

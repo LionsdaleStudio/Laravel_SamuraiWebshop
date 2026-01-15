@@ -25,6 +25,7 @@ class Sword extends Model
         "description",
         "release",
         "exclusive",
+        "image"
     ];
 
     /* RELATIONS */

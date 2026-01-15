@@ -6,10 +6,14 @@
 
 @section('content')
     <div class="details">
-        <img src="{{ asset("images/".$sword->image) }}" alt="Sword Image">
+        @if (Storage::disk('public')->exists('images/swords/' . $sword->image))
+            <img src="{{ asset('storage/images/swords/' . $sword->image) }}" alt="Sword Image">
+        @else
+            <img src="{{ asset('storage/images/' . $sword->image) }}" alt="Sword Image">
+        @endif
         <table>
             <tr>
-                <td>Name</td>
+                <td>Name</td>F
                 <td>{{ $sword->name }}</td>
             </tr>
             <tr>
@@ -22,7 +26,7 @@
             </tr>
             <tr>
                 <td>Exclusive</td>
-                <td>{{ $sword->exclusive ? "Yes" : "No" }}</td>
+                <td>{{ $sword->exclusive ? 'Yes' : 'No' }}</td>
             </tr>
             <tr>
                 <td>Description</td>

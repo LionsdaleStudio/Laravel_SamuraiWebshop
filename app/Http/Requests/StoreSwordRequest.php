@@ -29,7 +29,8 @@ class StoreSwordRequest extends FormRequest
             "length" => ["required", "numeric", "decimal:1,2"],
             "description" => ["required", "string"],
             "release" => ["required", "date"],
-            "exclusive" => ["boolean"]
+            "exclusive" => ["boolean"],
+            "image" => ["image", "max:40000", "mimes:png,jpg,jpeg"]
         ];
     }
     //A név mező required validációjának üzenetét felül lehet írni

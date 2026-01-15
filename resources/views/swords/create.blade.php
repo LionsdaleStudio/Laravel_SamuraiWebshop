@@ -9,7 +9,8 @@
         <h5>Create Sword</h5>
         <p>Fields marked with * must be filled</p>
         <hr>
-        <form action="{{ route('swords.store') }}" method="POST">
+        <form action="{{ route('swords.store') }}" method="POST" enctype="multipart/form-data">
+            {{-- Enctype attribútum a fájlküldés engedélyezéséhez és encrypteléséhez --}}
             @csrf
             <div class="form-group">
                 <label for="name" @error('name') style="color:red" @enderror>Name</label>
@@ -39,6 +40,10 @@
             <div class="form-group-check">
                 <label for="exclusive">Exclusive</label>
                 <input type="checkbox" name="exclusive" id="exclusive" value="1">
+            </div>
+            <div class="form-group">
+                <label for="image">Choose an image for the sword</label>
+                <input type="file" name="image" id="image" placeholder="Tölts fel egy képet">
             </div>
             <div>
                 <button type="submit" class="buttonlikea">Add sword</button>
