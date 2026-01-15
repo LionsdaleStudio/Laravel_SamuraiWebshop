@@ -13,7 +13,7 @@ class SwordPolicy
      */
     public function viewAny(User $user): bool
     {
-        return false;
+        return true; //Láthatja bárki
     }
 
     /**
@@ -21,7 +21,7 @@ class SwordPolicy
      */
     public function view(User $user, Sword $sword): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -29,10 +29,10 @@ class SwordPolicy
      */
     public function create(User $user): bool
     {
-        if ($user->id == 1) {
+        //Csak az admin hozhat létre
+        if (auth()->user()->role->slug == "admin") {
             return true;
-        }
-        else {
+        } else {
             return false;
         }
     }
@@ -42,7 +42,12 @@ class SwordPolicy
      */
     public function update(User $user, Sword $sword): bool
     {
-        return false;
+        //Csak az admin frissíthet
+        if (auth()->user()->role->slug == "admin") {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**
@@ -50,7 +55,12 @@ class SwordPolicy
      */
     public function delete(User $user, Sword $sword): bool
     {
-        return false;
+        //Csak az admin törölhet
+        if (auth()->user()->role->slug == "admin") {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**
@@ -58,7 +68,12 @@ class SwordPolicy
      */
     public function restore(User $user, Sword $sword): bool
     {
-        return false;
+        //Csak az admin állíthat vissza
+        if (auth()->user()->role->slug == "admin") {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**
@@ -66,6 +81,23 @@ class SwordPolicy
      */
     public function forceDelete(User $user, Sword $sword): bool
     {
-        return false;
+        //Csak az admin törölhet
+        if (auth()->user()->role->slug == "admin") {
+            return true;
+        } else {
+            return false;
+        }
     }
+
+    public function before(User $user)
+    {
+        //Először leellenőrzöm minden funkció előtt, hogy admin vagyok-e, ha igen mehet.
+        //Ha nem, akkor utána ellenőrzöm a többi lehetséges funkcionalitást.
+        if ($user->role->slug == "admin") {
+            return true;
+        }
+        return null;
+    }
+    //A before funkciónak vagy bool-t vagy null-t kell átadnia. A null esetében ellenőrzi a többi funkciót
+
 }

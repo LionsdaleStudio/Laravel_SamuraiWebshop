@@ -26,9 +26,15 @@ class SwordController extends Controller
      */
     public function create()
     {
-        if (auth()->user()->cannot('create', Sword::class)) {
+        if (auth()->check()) {
+            if (auth()->user()->cannot('create', Sword::class)) {
+                abort(403);
+            }
+        }
+        else {
             abort(403);
         }
+
         return view("swords.create");
     }
 
@@ -43,7 +49,7 @@ class SwordController extends Controller
         $sword = Sword::create($request->all());
 
         //Átirányítás egy adott oldalra
-        return redirect()->route("swords.index")->with("msg", "Sword was created successfully");
+        return redirect()->route("swords.index")->with("msg", "{$sword->name} was created successfully");
 
         //Ha vissza akarsz menni arra az oldalra ahonnan jöttél
         //return back()->with("msg", "Sword was created successfully");

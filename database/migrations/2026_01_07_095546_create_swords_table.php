@@ -22,6 +22,9 @@ return new class extends Migration
             $table->date("release");
             $table->timestamps();
             $table->softDeletes();
+            $table->foreignId("created_by")->nullable()->constrained("users","id");
+            $table->foreignId("updated_by")->nullable()->constrained("users","id");
+            $table->foreignId("deleted_by")->nullable()->constrained("users","id");
         });
     }
 

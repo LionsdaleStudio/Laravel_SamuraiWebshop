@@ -13,11 +13,13 @@
 </head>
 
 <body>
+    {{-- Videó background --}}
     <div class="video-bg">
         <video autoplay muted loop playsinline>
             <source src="{{ asset('vids/japan.mp4') }}" type="video/mp4">
         </video>
     </div>
+    
     {{-- Navbar (it's not but close enough) --}}
     <h1>@yield('pageTitle')</h1>
     <a href="{{ route('welcome') }}">Home</a>

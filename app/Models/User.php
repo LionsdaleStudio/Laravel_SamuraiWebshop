@@ -52,4 +52,9 @@ class User extends Authenticatable
         return $this->BelongsToMany(Samurai::class);
     }
     //PIVOT táblában keresi az összes user_id (ami a saját ID-je) és a mellé tartozó összes samurai_id-t, ami alapján lekéri a Samurai modellt. 
+
+    public function role() {
+        return $this->belongsTo(Role::class);
+    }
+
 }

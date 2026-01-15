@@ -22,4 +22,4 @@ Route::resource('/samurais', SamuraiController::class);
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home'); //A felhasználó saját DASHBOARD-ja (Landing Page)
